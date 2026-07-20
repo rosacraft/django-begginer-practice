@@ -6,7 +6,7 @@ def index_view(request):
     return render(request, 'website/index.html')
 
 def contact_view(request):
-    return HttpResponse("<h1>Contact Us Page</h1><p>this is a page</p>")
+    return render(request, 'website/contacts.html')
 
 def about_view(request):
-    return HttpResponse("<h1>About Us Page</h1><p>this is a page</p>")
+    return render(request, 'website/about.html')
