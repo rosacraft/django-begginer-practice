@@ -9,7 +9,7 @@ class PostAdmin(admin.ModelAdmin):
     #exclude = ('content',)
     list_display = ('id','title','counted_views','status','published_date','created_date')
     list_filter = ('status',)
-    ordering = ['-created_date']
+    #ordering = ['-created_date']
     search_fields = ['title','content']
     
 admin.site.register(Post,PostAdmin)
