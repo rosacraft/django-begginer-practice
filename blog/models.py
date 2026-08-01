@@ -22,4 +22,4 @@ class Post(models.Model):
         # verbose_name_plural = 'پست ها'    
     
     def __str__(self):
-        return f"{self.id} - {self.title}"
+        return self.title
