@@ -7,8 +7,8 @@ class PostAdmin(admin.ModelAdmin):
     empty_value_display = 'Not set'
     #fields = ('title',)
     #exclude = ('content',)
-    list_display = ('id','title','counted_views','status','published_date','created_date')
-    list_filter = ('status',)
+    list_display = ('title','author','counted_views','status','published_date','created_date')
+    list_filter = ('status','author')
     #ordering = ['-created_date']
     search_fields = ['title','content']
     
