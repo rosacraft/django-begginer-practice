@@ -5,7 +5,7 @@ from blog.models import Post
 
 def blog_view(request):
     posts = Post.objects.filter(status=1)
-    context = {'posts':posts}
+    context = {'posts':posts} 
     
     return render(request, 'blog/blog-home.html',context)
 
