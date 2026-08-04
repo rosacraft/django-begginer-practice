@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
+
 {% load static %}
+{% load blog_tags %}
+
 {% block content %}
   <!-- start banner Area -->
   <section class="banner-area relative blog-home-banner" id="home">
@@ -155,7 +158,8 @@
 
             {% include 'blog/blog-ads.html' %}
 
-            {% include "blog/blog-post-categories.html" %}
+            <!--  add inclusion -->
+            {% postcategories %}
 
             {% include "blog/blog-newsletter.html" %}
 
