@@ -10,11 +10,13 @@
 <body>
     <h1>Testing Page</h1>
     <p>posts:  {% posts as totalpost %}</p>
-    <p>{{tp}}</p>
     <p>
         {% for post in totalpost %}
-            <p>{{post}}</p>
+            <p>{{post.content|snippet:50}}</p>
         {% endfor %}
+
+        <br>
+        {% popularposts %}
     </p>
 </body>
 </html>
