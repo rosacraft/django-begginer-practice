@@ -16,5 +16,16 @@ def blog_single(request, pid):
     
     return render(request, 'blog/blog-single.html', context)
 
+def blog_category(request, cat_name):
+    print(repr(cat_name))
+
+    posts = Post.objects.filter(status=1)
+    
+    # The __iexact lookup is case-insensitive,
+    # so it doesn't distinguish between uppercase and lowercase letters.
+    posts = posts.filter(category__name__iexact=cat_name)
+
+    return render(request, 'blog/blog-home.html', {'posts': posts})
+
 def test_view(request):
     return render(request, 'test.html')
