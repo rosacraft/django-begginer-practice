@@ -5,7 +5,6 @@ from blog.models import Post
 
 def blog_view(request, **kwargs):
     posts = Post.objects.filter(status=1)
-    print(kwargs)
     
     if kwargs.get('cat_name'):
         posts = posts.filter(category__name__iexact = kwargs['cat_name'])
@@ -37,3 +36,17 @@ def blog_category(request, cat_name):
 
 def test_view(request):
     return render(request, 'test.html')
+
+def blog_search(request):
+    posts = Post.objects.filter(status=1)
+    
+    # with __dict__ we can we the elements & attributes of the request obj
+    # print(request.__dict__)
+    
+    if request.method == 'GET':
+        #print(request.GET.get('s'))
+        if s := request.GET.get('s'):
+            posts = posts.filter(content__contains = s)
+            
+    context = {'posts':posts}
+    return render(request, 'blog/blog-home.html', context)
