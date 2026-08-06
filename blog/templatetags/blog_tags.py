@@ -19,12 +19,6 @@ def fun ():
 def snippet(value,arg=20):
     return value[:arg] + '...'
 
-@register.inclusion_tag('popularposts.html')
-def popularposts():
-    posts = Post.objects.filter(status=1).order_by('published_date')
-    return {'posts': posts}
-
-
 # ---Main fun---
 @register.inclusion_tag('blog/blog-latest-posts.html')
 def latestposts(arg = 3):
@@ -39,5 +33,8 @@ def postcategories():
     cat_dict = {}
     
     for name in categories:
-        cat_dict[name] = posts.filter(category=name).count()
+        # to avoid shoeing tags with 0 obj
+        if posts.filter(category=name).count():
+            cat_dict[name] = posts.filter(category=name).count()
+    print(posts.query)
     return {'categories': cat_dict}
