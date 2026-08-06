@@ -36,5 +36,4 @@ def postcategories():
         # to avoid shoeing tags with 0 obj
         if posts.filter(category=name).count():
             cat_dict[name] = posts.filter(category=name).count()
-    print(posts.query)
     return {'categories': cat_dict}

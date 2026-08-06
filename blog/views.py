@@ -3,12 +3,17 @@ from blog.models import Post
 
 # Create your views here.
 
-def blog_view(request, cat_name=None):
+def blog_view(request, cat_name=None, author_username=None):
     posts = Post.objects.filter(status=1)
     
     if cat_name:
-        posts = posts.filter(category__name__iexact=cat_name)
-    context = {'posts':posts} 
+        posts = posts.filter(category__name__iexact = cat_name)
+    
+    if author_username:
+        # when we want to point out to a field in another table that it relates to my element, 
+        posts = posts.filter(author__username__iexact = author_username)
+        
+    context = {'posts':posts}
     
     return render(request, 'blog/blog-home.html', context)
 
