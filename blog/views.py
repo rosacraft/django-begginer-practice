@@ -1,5 +1,6 @@
 from django.shortcuts import render,get_object_or_404
 from blog.models import Post
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger 
 
 # Create your views here.
 
@@ -12,7 +13,18 @@ def blog_view(request, **kwargs):
     if kwargs.get('author_username'):
         # when we want to point out to a field in another table that it relates to my element, 
         posts = posts.filter(author__username__iexact = kwargs['author_username'])
-        
+    
+    # Paginator
+    posts =  Paginator(posts, 3)
+    page_num = request.GET.get('page')
+    
+    try:
+        posts = posts.page(page_num)
+    except PageNotAnInteger:
+        posts = posts.page(1)
+    except EmptyPage:
+        posts = posts.page(1)
+ 
     context = {'posts':posts}
     
     return render(request, 'blog/blog-home.html', context)
