@@ -8,15 +8,21 @@
     <title>Test</title>
 </head>
 <body>
-    <h1>Testing Page</h1>
-    <p>posts:  {% posts as totalpost %}</p>
-    <p>
-        {% for post in totalpost %}
-            <p>{{post.content|snippet:50}}</p>
-        {% endfor %}
+    <form action="{% url 'website:test' %}" method="post">
+        {% csrf_token %}
+        <label>name:</label>
+        <input name="name" type="text"><br>
 
-        <br>
-        {% popularposts %}
-    </p>
+        <label>email:</label>
+        <input name="email" type="email"><br>
+
+        <label>subject:</label>
+        <input name="subject" type="text"><br>
+
+        <label>message:</label>
+        <input name="message" type="text">
+         
+        <button type="submit">submit</button>
+    </form>
 </body>
 </html>
